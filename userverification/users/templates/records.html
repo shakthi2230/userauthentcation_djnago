@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-6/assets/css/login-6.css">
+</head>
+
+<body>
+
+    <center>
+        <h1>This is Record Section</h1>
+    </center>
+
+    <div class="col-md-6 mt-5 container">
+        {% if mydata%}
+        <h3 class="page-header text-primary text-center"></h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>password</th>
+                    <th>Delete</th>
+                </tr>
+
+            </thead>
+
+            {% for data in mydata %}
+            <tbody>
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.mobile_number}}</td>
+                    <td>{{data.address}}</td>
+                    <td>{{data.password}}</td>
+                    <th><a class="btn btn-danger" href="deletedata/{{data.id}}">Delete</a></th>
+
+                </tr>
+            </tbody>
+            {% endfor %}
+
+
+        </table>
+        {% endif %}
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-6/assets/css/login-6.css">
+    <script>
+        window.onload = function () {
+            // Check if there's a success message
+            var successMessage = document.getElementById('successMessage').getAttribute('data-success');
+
+            if (successMessage) {
+                // Use a pop-up message using alert
+                alert(successMessage);
+
+                // You can also use other methods for displaying pop-up messages, such as a modal dialog.
+                // Example using Bootstrap modal:
+                // $('#myModal').modal('show');
+            }
+        };
+    </script>
+</head>
+
+<body class="text-center">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h1 class="mb-4">Reset password</h1>
+                <form action="/updatepassword/{{ getdata.id }}" method="post" onsubmit="return validateForm()">
+                    {% csrf_token %}
+                    <div class="mb-3 row">
+                        <label for="name" class="col-sm-4 col-form-label">Name: </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="name" value="{{ getdata.name }}" id="name"
+                                required disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="email" class="col-sm-4 col-form-label">Email:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" name="email" value="{{ getdata.email }}" id="email"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!-- <div class="mb-3 row">
+                        <label for="address" class="col-sm-4 col-form-label">address</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="address" value="{{ getdata.address }}"
+                                id="address" required>
+                        </div>
+                    </div> -->
+                    <div class="mb-3 row">
+                        <label for="phonenumber" class="col-sm-4 col-form-label">Contact:</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" name="phonenumber"
+                                value="{{ getdata.mobile_number }}" id="phonenumber" required disabled>
+                        </div>
+                    </div>
+                    <!-- <div class="mb-3 row">
+                        <label for="password" class="col-sm-4 col-form-label">password</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="password" value="{{ getdata.password}}"
+                                id="password" required>
+                        </div>
+                    </div> -->
+                    <div class="mb-3 row">
+                        <label for="password" class="col-sm-4 col-form-label"> New Password:</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="password" id="password" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="confirm_password" class="col-sm-4 col-form-label">Confirm Password:</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                                required>
+                        </div>
+                    </div>
+                    <div id="passwordError" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary btn-block">
+                    </div>
+
+                </form>
+
+                <script>
+
+                    function validateForm() {
+                        var password = document.getElementById('password').value;
+                        var confirmPassword = document.getElementById('confirm_password').value;
+                        var passwordErrorElement = document.getElementById('passwordError');
+
+                        if (password !== confirmPassword) {
+                            passwordErrorElement.innerHTML = 'Passwords do not match.';
+                            return false;
+                        } else {
+                            passwordErrorElement.innerHTML = '';
+                            return true;
+                        }
+                    }
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
