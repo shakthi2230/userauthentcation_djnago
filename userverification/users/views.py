@@ -40,7 +40,7 @@ def createaccount(request):
 
     return render(request, 'signup.html')
 
-
+#login function
     
 def login(request):
     if request.method == 'POST':
